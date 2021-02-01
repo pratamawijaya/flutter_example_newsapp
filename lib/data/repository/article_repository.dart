@@ -1,10 +1,24 @@
+import 'package:flutter_newsapp_example/data/datasource/article_remote_datasource.dart';
+import 'package:flutter_newsapp_example/data/mapper/article_mapper.dart';
 import 'package:flutter_newsapp_example/domain/article.dart';
 
 abstract class ArticleRepository {
   Future<List<Article>> getTopHeadlines(String country, String category);
 }
 
-// TODO : create ArticleRepository get data from datasource
+class ArticleRepositoryImpl implements ArticleRepository {
+  final ArticleRemoteDatasource articleRemoteDatasource;
+  final ArticleMapper articleMapper;
+
+  ArticleRepositoryImpl(this.articleRemoteDatasource, this.articleMapper);
+
+  @override
+  Future<List<Article>> getTopHeadlines(String country, String category) async {
+    var result =
+        await articleRemoteDatasource.getTopHeadlines(country, category);
+    return articleMapper.toListDomain(result);
+  }
+}
 
 class FakeArticleRepository implements ArticleRepository {
   @override
