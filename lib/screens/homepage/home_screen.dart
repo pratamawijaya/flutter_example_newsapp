@@ -13,6 +13,12 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("News"),
       ),
       // TODO: create ui body
+      body: Center(
+          child: Column(
+        children: [
+          Text("Hello"),
+        ],
+      )),
     );
   }
 }

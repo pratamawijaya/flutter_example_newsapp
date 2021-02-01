@@ -27,6 +27,6 @@ class ArticleModel extends Article {
         url: json['url'],
         urlToImage: json['urlToImage'],
         publishedAt: json['publishedAt'],
-        content: json['conten']);
+        content: json['content']);
   }
 }
