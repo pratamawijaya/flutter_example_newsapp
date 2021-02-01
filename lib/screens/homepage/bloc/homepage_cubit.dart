@@ -17,9 +17,7 @@ class HomepageCubit extends Cubit<HomepageState> {
     final result = await _articleRepository.getTopHeadlines(country, category);
 
     developer.log('log me', name: 'panjang articles -> ${result.length}');
-    result.map((e) {
-      print("hasilnya ${e.url}");
-    });
+    developer.log('log me', name: 'articles -> ' + result[0].title);
 
     emit(HomepageLoaded(result));
   }

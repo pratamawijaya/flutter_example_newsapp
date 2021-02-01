@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'dart:developer' as developer;
 
 class NewsApi {
-  static const _base_url = "http://newsapi.org/v2/";
-  final String _api_key = "4b4df2ea3a154950852b6fda536cfb7f";
+  static const baseUrl = "http://newsapi.org/v2";
+  final String apiKey = "4b4df2ea3a154950852b6fda536cfb7f";
 
   final Dio _dio;
 
@@ -12,7 +12,7 @@ class NewsApi {
   Future<Response<String>> getTopHeadlines(
       String country, String category) async {
     final String url =
-        "$_base_url/top-headlines?country=$country&category=$category&apiKey=$_api_key";
+        "$baseUrl/top-headlines?country=$country&category=$category&apiKey=$apiKey";
     developer.log("log me ", name: "urlnya -> $url");
     return _dio.get(url);
   }

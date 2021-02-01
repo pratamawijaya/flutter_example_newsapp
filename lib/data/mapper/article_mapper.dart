@@ -19,5 +19,7 @@ class ArticleMapper {
     models.forEach((element) {
       domains.add(toDomain(element));
     });
+
+    return domains;
   }
 }
