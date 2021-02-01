@@ -10,7 +10,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
   final ArticleRemoteDatasource articleRemoteDatasource;
   final ArticleMapper articleMapper;
 
-  ArticleRepositoryImpl(this.articleRemoteDatasource, this.articleMapper);
+  ArticleRepositoryImpl({this.articleRemoteDatasource, this.articleMapper});
 
   @override
   Future<List<Article>> getTopHeadlines(String country, String category) async {

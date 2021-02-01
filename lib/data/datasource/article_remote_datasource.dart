@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:flutter_newsapp_example/data/models/article_model.dart';
 import 'package:flutter_newsapp_example/data/models/response/newsapi_article_response.dart';
 import 'package:flutter_newsapp_example/data/service/news_api.dart';
@@ -22,6 +21,6 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDatasource {
     var parseResult =
         NewsApiArticleResponse.fromJson(json.decode(response.data));
 
-    throw parseResult.articles;
+    return parseResult.articles;
   }
 }
