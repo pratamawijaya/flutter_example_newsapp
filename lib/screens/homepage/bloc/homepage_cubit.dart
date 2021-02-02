@@ -9,10 +9,23 @@ part 'homepage_state.dart';
 class HomepageCubit extends Cubit<HomepageState> {
   ArticleRepository _articleRepository;
   int _currentPage = 1;
+  final String category = "technology";
+  final String country = "us";
 
   HomepageCubit(this._articleRepository) : super(HomepageInitial());
 
-  void getTopHeadlines(String category, String country) async {
+  void loadMore() async {
+    _currentPage = _currentPage + 1;
+
+    final result = await _articleRepository.getTopHeadlines(
+        country, category, _currentPage);
+
+    developer.log('log me', name: 'articles -> ' + result[0].title);
+
+    emit(HomepageLoaded(articles: result, hasRearchMax: false));
+  }
+
+  void getTopHeadlines() async {
     emit(HomepageLoading());
 
     final result = await _articleRepository.getTopHeadlines(
