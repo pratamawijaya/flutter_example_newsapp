@@ -5,7 +5,8 @@ import 'package:flutter_newsapp_example/data/models/response/newsapi_article_res
 import 'package:flutter_newsapp_example/data/service/news_api.dart';
 
 abstract class ArticleRemoteDatasource {
-  Future<List<ArticleModel>> getTopHeadlines(String country, String category);
+  Future<List<ArticleModel>> getTopHeadlines(
+      String country, String category, int page);
 }
 
 class ArticleRemoteDataSourceImpl implements ArticleRemoteDatasource {
@@ -15,8 +16,8 @@ class ArticleRemoteDataSourceImpl implements ArticleRemoteDatasource {
 
   @override
   Future<List<ArticleModel>> getTopHeadlines(
-      String country, String category) async {
-    var response = await api.getTopHeadlines(country, category);
+      String country, String category, int page) async {
+    var response = await api.getTopHeadlines(country, category, page);
 
     var parseResult =
         NewsApiArticleResponse.fromJson(json.decode(response.data));

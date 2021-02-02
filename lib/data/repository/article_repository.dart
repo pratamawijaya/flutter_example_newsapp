@@ -3,7 +3,8 @@ import 'package:flutter_newsapp_example/data/mapper/article_mapper.dart';
 import 'package:flutter_newsapp_example/domain/article.dart';
 
 abstract class ArticleRepository {
-  Future<List<Article>> getTopHeadlines(String country, String category);
+  Future<List<Article>> getTopHeadlines(
+      String country, String category, int page);
 }
 
 class ArticleRepositoryImpl implements ArticleRepository {
@@ -13,7 +14,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
   ArticleRepositoryImpl({this.articleRemoteDatasource, this.articleMapper});
 
   @override
-  Future<List<Article>> getTopHeadlines(String country, String category) async {
+  Future<List<Article>> getTopHeadlines(
+      String country, String category, int page) async {
     var result =
         await articleRemoteDatasource.getTopHeadlines(country, category);
     return articleMapper.toListDomain(result);
@@ -22,7 +24,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
 class FakeArticleRepository implements ArticleRepository {
   @override
-  Future<List<Article>> getTopHeadlines(String country, String category) {
+  Future<List<Article>> getTopHeadlines(
+      String country, String category, int page) {
     return Future.delayed(Duration(seconds: 1), () {
       List<Article> fakeArticles = List<Article>();
 

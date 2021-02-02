@@ -21,15 +21,20 @@ class HomepageError extends HomepageState {
 
   @override
   List<Object> get props => [errorMessage];
-
 }
 
 class HomepageLoaded extends HomepageState {
   List<Article> articles;
+  bool hasRearchMax;
 
-  HomepageLoaded(this.articles);
+  HomepageLoaded({this.articles, this.hasRearchMax});
+
+  HomepageLoaded copyWith({List<Article> articles, bool hasReachedMax}) {
+    return HomepageLoaded(
+        articles: articles ?? this.articles,
+        hasRearchMax: hasRearchMax ?? this.hasRearchMax);
+  }
 
   @override
   List<Object> get props => [articles];
-
 }
