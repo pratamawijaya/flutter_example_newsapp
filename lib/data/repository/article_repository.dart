@@ -17,7 +17,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
   Future<List<Article>> getTopHeadlines(
       String country, String category, int page) async {
     var result =
-        await articleRemoteDatasource.getTopHeadlines(country, category);
+        await articleRemoteDatasource.getTopHeadlines(country, category, page);
     return articleMapper.toListDomain(result);
   }
 }
