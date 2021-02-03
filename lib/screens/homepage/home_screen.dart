@@ -30,7 +30,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CircularProgressIndicator(),
               );
             } else if (state is HomepageLoaded) {
-              return _buildListData(context, state.articles);
+              return LazyLoadScrollView(
+                onEndOfPage: () {
+                  context.read<HomepageCubit>().getTopHeadlines();
+                },
+                child: Scrollbar(
+                  child: ListView.builder(
+                      itemCount: state.articles.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(
+                            state.articles[index].title,
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        );
+                      }),
+                ),
+              );
             } else {
               return Center(
                 child: Text("Kosong"),
@@ -47,11 +63,13 @@ class _HomeScreenState extends State<HomeScreen> {
       onEndOfPage: () {
         context.read<HomepageCubit>().getTopHeadlines();
       },
-      child: ListView.builder(
-          itemCount: articles.length,
-          itemBuilder: (context, index) {
-            return _newsTile(articles[index]);
-          }),
+      child: Scrollbar(
+        child: ListView.builder(
+            itemCount: articles.length,
+            itemBuilder: (context, index) {
+              return _newsTile(articles[index]);
+            }),
+      ),
     );
   }
 

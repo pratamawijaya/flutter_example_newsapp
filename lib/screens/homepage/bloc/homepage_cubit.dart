@@ -16,19 +16,25 @@ class HomepageCubit extends Cubit<HomepageState> {
   HomepageCubit(this._articleRepository) : super(HomePageUninitialized());
 
   void getTopHeadlines() async {
-    emit(HomepageLoading());
-
     if (state is HomePageUninitialized) {
+      emit(HomepageLoading());
     } else {
       _currentPage = _currentPage + 1;
-      d.log('log me', name: "loadmore $_currentPage");
+      d.log('log', name: "loadmore $_currentPage");
     }
 
     var result = await _articleRepository.getTopHeadlines(
         country, category, _currentPage);
+
     _articles.addAll(result);
 
-    d.log('log me', name: "panjang data article -> ${_articles.length}");
+    d.log('log', name: "panjang data article -> ${_articles.length}");
+
+    int idx = 0;
+    _articles.forEach((element) {
+      ++idx;
+      d.log('log', name: "data -> $idx - ${element.title}");
+    });
 
     emit(HomepageLoaded(articles: _articles));
   }
