@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildListData(BuildContext context, List<Article> articles) {
     return LazyLoadScrollView(
       onEndOfPage: () {
-        context.read<HomepageCubit>().loadMore();
+        context.read<HomepageCubit>().getTopHeadlines();
       },
       child: ListView.builder(
           itemCount: articles.length,

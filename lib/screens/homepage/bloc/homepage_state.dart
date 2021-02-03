@@ -4,9 +4,22 @@ abstract class HomepageState extends Equatable {
   const HomepageState();
 }
 
-class HomepageInitial extends HomepageState {
+class HomePageUninitialized extends HomepageState {
   @override
   List<Object> get props => [];
+}
+
+class HomepageLoaded extends HomepageState {
+  List<Article> articles;
+
+  HomepageLoaded({this.articles});
+
+  HomepageLoaded copyWith({List<Article> articles, bool hasReachedMax}) {
+    return HomepageLoaded(articles: articles ?? this.articles);
+  }
+
+  @override
+  List<Object> get props => [articles];
 }
 
 class HomepageLoading extends HomepageState {
@@ -21,20 +34,4 @@ class HomepageError extends HomepageState {
 
   @override
   List<Object> get props => [errorMessage];
-}
-
-class HomepageLoaded extends HomepageState {
-  List<Article> articles;
-  bool hasRearchMax;
-
-  HomepageLoaded({this.articles, this.hasRearchMax});
-
-  HomepageLoaded copyWith({List<Article> articles, bool hasReachedMax}) {
-    return HomepageLoaded(
-        articles: articles ?? this.articles,
-        hasRearchMax: hasRearchMax ?? this.hasRearchMax);
-  }
-
-  @override
-  List<Object> get props => [articles];
 }
