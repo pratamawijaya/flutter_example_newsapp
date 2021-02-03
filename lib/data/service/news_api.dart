@@ -4,7 +4,7 @@ import 'dart:developer' as developer;
 class NewsApi {
   static const baseUrl = "http://newsapi.org/v2";
   final String apiKey = "4b4df2ea3a154950852b6fda536cfb7f";
-  final int pageSize = 10;
+  final int pageSize = 20;
 
   final Dio _dio;
 
