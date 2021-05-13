@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter_newsapp_example/data/datasource/article_remote_datasource.dart';
 import 'package:flutter_newsapp_example/data/mapper/article_mapper.dart';
+import 'package:flutter_newsapp_example/data/models/article_model.dart';
 import 'package:flutter_newsapp_example/domain/article.dart';
 
 abstract class ArticleRepository {
@@ -8,17 +11,17 @@ abstract class ArticleRepository {
 }
 
 class ArticleRepositoryImpl implements ArticleRepository {
-  final ArticleRemoteDatasource articleRemoteDatasource;
-  final ArticleMapper articleMapper;
+  final ArticleRemoteDatasource? articleRemoteDatasource;
+  final ArticleMapper? articleMapper;
 
   ArticleRepositoryImpl({this.articleRemoteDatasource, this.articleMapper});
 
   @override
   Future<List<Article>> getTopHeadlines(
       String country, String category, int page) async {
-    var result =
-        await articleRemoteDatasource.getTopHeadlines(country, category, page);
-    return articleMapper.toListDomain(result);
+    var result = await articleRemoteDatasource!.getTopHeadlines(
+        country, category, page) as FutureOr<List<ArticleModel>>;
+    return articleMapper!.toListDomain(result as List<ArticleModel>);
   }
 }
 

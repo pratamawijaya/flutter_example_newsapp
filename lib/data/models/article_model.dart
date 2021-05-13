@@ -3,13 +3,13 @@ import 'package:flutter_newsapp_example/domain/article.dart';
 
 class ArticleModel extends Article {
   ArticleModel(
-      {@required String author,
-      @required String title,
-      @required String description,
-      @required String url,
-      @required String urlToImage,
-      @required String publishedAt,
-      @required String content})
+      {required String? author,
+      required String? title,
+      required String? description,
+      required String? url,
+      required String? urlToImage,
+      required String? publishedAt,
+      required String? content})
       : super(
             author: author,
             title: title,

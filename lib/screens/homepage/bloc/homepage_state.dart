@@ -10,16 +10,16 @@ class HomePageUninitialized extends HomepageState {
 }
 
 class HomepageLoaded extends HomepageState {
-  List<Article> articles;
+  List<Article>? articles;
 
   HomepageLoaded({this.articles});
 
-  HomepageLoaded copyWith({List<Article> articles, bool hasReachedMax}) {
+  HomepageLoaded copyWith({List<Article>? articles, bool? hasReachedMax}) {
     return HomepageLoaded(articles: articles ?? this.articles);
   }
 
   @override
-  List<Object> get props => [articles];
+  List<Object?> get props => [articles];
 }
 
 class HomepageLoading extends HomepageState {

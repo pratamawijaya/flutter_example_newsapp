@@ -7,7 +7,7 @@ import 'dart:developer' as d;
 part 'homepage_state.dart';
 
 class HomepageCubit extends Cubit<HomepageState> {
-  ArticleRepository _articleRepository;
+  ArticleRepository? _articleRepository;
   List<Article> _articles = new List<Article>();
   int _currentPage = 1;
   final String category = "technology";
@@ -23,7 +23,7 @@ class HomepageCubit extends Cubit<HomepageState> {
       d.log('log', name: "loadmore $_currentPage");
     }
 
-    var result = await _articleRepository.getTopHeadlines(
+    var result = await _articleRepository!.getTopHeadlines(
         country, category, _currentPage);
 
     _articles.addAll(result);

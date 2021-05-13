@@ -36,11 +36,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Scrollbar(
                   child: ListView.builder(
-                      itemCount: state.articles.length,
+                      itemCount: state.articles!.length,
                       itemBuilder: (context, index) {
                         return ListTile(
                           title: Text(
-                            state.articles[index].title,
+                            state.articles![index].title!,
                             style: TextStyle(fontSize: 14),
                           ),
                         );
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ListTile _newsTile(Article article) {
     return ListTile(
       title: Text(
-        article.title,
+        article.title!,
         style: TextStyle(fontSize: 14),
       ),
     );

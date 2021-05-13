@@ -1,9 +1,9 @@
 import 'package:flutter_newsapp_example/data/models/article_model.dart';
 
 class NewsApiArticleResponse {
-  String status;
-  int totalResults;
-  List<ArticleModel> articles;
+  String? status;
+  int? totalResults;
+  List<ArticleModel>? articles;
 
   NewsApiArticleResponse({this.status, this.totalResults, this.articles});
 
@@ -13,7 +13,7 @@ class NewsApiArticleResponse {
     if (json['articles'] != null) {
       articles = new List<ArticleModel>();
       json['articles'].forEach((v) {
-        articles.add(new ArticleModel.fromJson(v));
+        articles!.add(new ArticleModel.fromJson(v));
       });
     }
   }
