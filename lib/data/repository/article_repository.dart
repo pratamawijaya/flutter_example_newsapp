@@ -19,8 +19,9 @@ class ArticleRepositoryImpl implements ArticleRepository {
   @override
   Future<List<Article>> getTopHeadlines(
       String country, String category, int page) async {
-    var result = await articleRemoteDatasource!.getTopHeadlines(
-        country, category, page) as FutureOr<List<ArticleModel>>;
+    var result =
+        await articleRemoteDatasource!.getTopHeadlines(country, category, page)
+            as FutureOr<List<ArticleModel>>;
     return articleMapper!.toListDomain(result as List<ArticleModel>);
   }
 }
@@ -30,7 +31,8 @@ class FakeArticleRepository implements ArticleRepository {
   Future<List<Article>> getTopHeadlines(
       String country, String category, int page) {
     return Future.delayed(Duration(seconds: 1), () {
-      List<Article> fakeArticles = List<Article>();
+      List<Article> fakeArticles =
+          List<Article>.filled(0, Article(), growable: true);
 
       fakeArticles.add(Article(
           author: "Dan Caplinger",

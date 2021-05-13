@@ -11,7 +11,8 @@ class NewsApiArticleResponse {
     status = json['status'];
     totalResults = (json['totalResults'] as num).toInt();
     if (json['articles'] != null) {
-      articles = new List<ArticleModel>();
+      articles =
+          new List<ArticleModel>.filled(0, ArticleModel(), growable: true);
       json['articles'].forEach((v) {
         articles!.add(new ArticleModel.fromJson(v));
       });

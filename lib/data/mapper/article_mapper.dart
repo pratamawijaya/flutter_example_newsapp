@@ -14,7 +14,8 @@ class ArticleMapper {
   }
 
   List<Article> toListDomain(List<ArticleModel> models) {
-    List<Article> domains = new List<Article>();
+    List<Article> domains =
+        new List<Article>.filled(0, Article(), growable: true);
 
     models.forEach((element) {
       domains.add(toDomain(element));
